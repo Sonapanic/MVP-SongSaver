@@ -7,8 +7,8 @@ function start() {
 
 start()
 
-function initialize() {
-    const songs = fetchSongs(url)
+async function initialize() {
+    const songs = await fetchSongs(url)
     $('<ul id="ul"></ul>').appendTo('#listContainer')
     for (let key in songs) {
         let title = songs[key].title

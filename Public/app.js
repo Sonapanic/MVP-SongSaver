@@ -1,6 +1,20 @@
 const addBtn = $('#addBtn')
 const url = 'https://songsaver.onrender.com/song_info'
 
+function start() {
+    initialize()
+}
+
+function initialize() {
+    const songs = fetchSongs(url)
+    $('<ul id="ul"></ul>').appendTo('#listContainer')
+    for (let key in songs) {
+        let title = songs[key].title
+        let artist = songs[key].artist
+        let genre = songs[key].genre
+        $(`<li>Title: ${title} Artist: ${artist} Genre: ${genre}`).appendTo($('#ul'))
+    }
+}
 
 $(addBtn).on('click', put)
 
@@ -28,7 +42,7 @@ async function fetchSongs(url) {
             throw new Error('Response not ok')
         }
         const songs = await response.json()
-        console.log(songs)
+        return(songs)
     } catch (err) {
         console.error(err)
     }
@@ -65,7 +79,7 @@ async function editSong(url) {
         genre: $('#genreInput').val()
     }
     try {
-        const response = fetch(url, {
+        const response = fetch(url`${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

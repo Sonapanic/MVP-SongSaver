@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+	margin: 0;
+	box-sizing: 'border-box';
+	font-family: 'whatever font';
+	background-color: whitesmoke;
+    
+}
+
+/* .bodyDiv {
+    justify-content: center;
+    width: 100vw;
+} */
+
+
+.div {
+    display: flex;
+    /* background-color: slateblue; */
+}
+
+/* Header portion */
+
+.headerDiv,
+.header,
+.titleDiv,
+.title,
+.p {
+    background-color: slateblue;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.headerDiv {
+    height: 13vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.header {
+    justify-content: center;
+}
+
+.titleDiv {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid whitesmoke;
+    width: 50vw;
+    height: 8vh;
+    
+}
+
+.p {
+    font-size: 1em;
+}

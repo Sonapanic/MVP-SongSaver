@@ -1,5 +1,5 @@
 const addBtn = $('#addBtn')
-const url = 'https://songsaver.onrender.com'
+const url = 'https://songsaver.onrender.com/song_info/'
 
 // const localUrl = 'localhost:10000/song_info/'
 

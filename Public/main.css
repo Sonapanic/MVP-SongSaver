@@ -4,18 +4,11 @@
 	box-sizing: 'border-box';
 	font-family: 'whatever font';
 	background-color: whitesmoke;
-    
+    font-family: 'M PLUS Rounded 1c', sans-serif;
 }
-
-/* .bodyDiv {
-    justify-content: center;
-    width: 100vw;
-} */
-
 
 .div {
     display: flex;
-    /* background-color: slateblue; */
 }
 
 /* Header portion */
@@ -26,7 +19,7 @@
 .title,
 .p {
     background-color: slateblue;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
+    
 }
 .headerDiv {
     height: 13vh;
@@ -54,3 +47,6 @@
 .p {
     font-size: 1em;
 }
+
+
+/* Central portion */

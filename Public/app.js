@@ -24,7 +24,7 @@ async function fetchSongs(url) {
             throw new Error('Response not ok')
         }
         const songs = await response.json()
-        console.log(songs.rows)
+        console.log(songs)
     } catch (err) {
         console.error(err)
     }

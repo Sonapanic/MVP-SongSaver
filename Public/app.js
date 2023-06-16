@@ -5,6 +5,8 @@ function start() {
     initialize()
 }
 
+start()
+
 function initialize() {
     const songs = fetchSongs(url)
     $('<ul id="ul"></ul>').appendTo('#listContainer')

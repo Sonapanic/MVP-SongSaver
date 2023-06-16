@@ -66,7 +66,7 @@ app.put('/song_info/:id', async (req, res) => {
     const { title, artist, genre } = req.body
     try {
         const result = await sql`UPDATE song_info SET title = ${title}, artist = ${artist}, genre = ${genre} WHERE id = ${id} RETURNING *`.then((data) => {
-            res.status(201).json(data)
+            res.status(200).json(data)
         })
     } catch (err) {
         console.error(err) 
@@ -75,7 +75,16 @@ app.put('/song_info/:id', async (req, res) => {
 })
 
 
-
+app.delete('/song_info/:id', async (req, res) => {
+    const { id } = req.params
+    try {
+        const result = await pool.query(`DELETE FROM song_info WHERE id = ${id} RETURNING *`)
+        res.status(201).json(result.rows)
+    } catch (err) {
+        console.error(err) 
+        res.status(500).json('Internal Server Error')
+    }
+})
 
 
 app.listen(port, () => {

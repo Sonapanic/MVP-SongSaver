@@ -14,7 +14,7 @@ function initialize() {
         let title = songs[key].title
         let artist = songs[key].artist
         let genre = songs[key].genre
-        $(`<li>Title: ${title} Artist: ${artist} Genre: ${genre}`).appendTo($('#ul'))
+        $(`<li>Title: ${title} Artist: ${artist} Genre: ${genre}</li>`).appendTo($('#ul'))
     }
 }
 

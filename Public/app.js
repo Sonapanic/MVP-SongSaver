@@ -9,7 +9,7 @@ function getAll(e) {
 }
 function post(e) {
     e.preventDefault()
-    addSong()
+    addSong(url)
 }
 
 

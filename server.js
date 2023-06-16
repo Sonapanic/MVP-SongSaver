@@ -25,7 +25,7 @@ app.use(express.static('Public'))
 app.get('/song_info/', async (req, res) => {
     try {
         const response = await pool.query('SELECT * FROM song_info ORDER BY id ASC')
-        res.status(200).json(result.rows)
+        res.status(200).json(response.rows)
     } catch (err) {
         console.error(err) 
         res.status(500).json('Internal Server Error')

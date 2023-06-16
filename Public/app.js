@@ -1,4 +1,7 @@
 const addBtn = $('#addBtn')
+const url = 'https://songsaver.onrender.com'
+
+// const localUrl = 'localhost:10000/song_info/'
 
 // $(addBtn).click(post())
 
@@ -9,14 +12,20 @@ const addBtn = $('#addBtn')
 
 $(addBtn).on('click', getAll)
 
-async function getAll(e) {
+function getAll(e) {
     e.preventDefault()
-    fetch('/song_info')
-    .then((res) => {
-        return res.json()
-    })
-    .then((data) => {
-        console.log(data)
-    })
+    fetchSongs(url)
 }
-  
+
+async function fetchSongs(url) {
+    try {
+        const response = await fetch(url)
+        if (!response.ok) {
+            throw new Error('Response not ok')
+        }
+        const songs = await response.json()
+        console.log(songs.rows)
+    } catch (err) {
+        console.error(err)
+    }
+}

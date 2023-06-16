@@ -11,9 +11,12 @@ $(addBtn).on('click', getAll)
 
 async function getAll(e) {
     e.preventDefault()
-    fetch("song_info")
-    .then((res) => res.json())
+    fetch('/song_info')
+    .then((res) => {
+        return res.json()
+    })
     .then((data) => {
-      console.log('Song Info:', data);
-    });
-  }
+        console.log(data)
+    })
+}
+  

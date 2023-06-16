@@ -22,21 +22,21 @@ app.use(express.json())
 app.use(express.static('Public'))
 
 
-// app.get('/song_info/', async (req, res) => {
-//     try {
-//         const result = await pool.query('SELECT * FROM song_info ORDER BY id ASC')
-//         res.status(200).json(result.rows)
-//     } catch (err) {
-//         console.error(err) 
-//         res.status(500).json('Internal Server Error')
-//     }
-// })
+app.get('/song_info/', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM song_info ORDER BY id ASC')
+        res.status(200).json(result.rows)
+    } catch (err) {
+        console.error(err) 
+        res.status(500).json('Internal Server Error')
+    }
+})
 
-app.get("/song_info", async (_, res) => {
-    sql`SELECT * FROM song_info`.then((data) => {
-      res.json(data);
-    });
-  });
+// app.get("/song_info", async (_, res) => {
+//     sql`SELECT * FROM song_info ORDER BY id ASC`.then((data) => {
+//       res.json(data);
+//     });
+//   });
   
 
 

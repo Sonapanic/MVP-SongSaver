@@ -32,13 +32,6 @@ app.get('/song_info/', async (req, res) => {
     }
 })
 
-// app.get("/song_info", async (_, res) => {
-//     sql`SELECT * FROM song_info ORDER BY id ASC`.then((data) => {
-//       res.json(data);
-//     });
-//   });
-  
-
 
 app.get('/song_info/:id', async (req, res) => {
     const { id } = req.params

@@ -32,7 +32,7 @@ app.use(express.static('Public'))
 //     }
 // })
 
-app.get("/song_info", (_, res) => {
+app.get("/song_info", async (_, res) => {
     sql`SELECT * FROM song_info`.then((data) => {
       res.json(data);
     });

@@ -1,7 +1,7 @@
 const addBtn = $('#addBtn')
 const url = 'https://songsaver.onrender.com/song_info'
 
-$(addBtn).on('click', addSong)
+$(addBtn).on('click', post)
 
 function getAll(e) {
     e.preventDefault()

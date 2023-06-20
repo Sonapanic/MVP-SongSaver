@@ -21,15 +21,17 @@ function tableData(obj) {
         const title = obj[key].title
         const artist = obj[key].artist
         const genre = obj[key].genre
+      
         const trId = `tr${title}`
-        const tr = $(`<tr id="${trId}></tr>`)
-        tr.appendTo('#tbody')
-        
-        $(`<td>Title: ${title}</td>`).appendTo(`#tr${title}`)
-        $(`<td>Artist: ${artist}</td>`).appendTo(`#tr${title}`)
-        $(`<td>Genre: ${genre}</td>`).appendTo(`#tr${title}`)
+        const $tr = $(`<tr id="${trId}"></tr>`)
+        $tr.appendTo('#tbody')
+      
+        $(`<td>Title: ${title}</td>`).appendTo($tr)
+        $(`<td>Artist: ${artist}</td>`).appendTo($tr)
+        $(`<td>Genre: ${genre}</td>`).appendTo($tr)
     }
 }
+      
 
 
 

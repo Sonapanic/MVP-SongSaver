@@ -111,4 +111,5 @@ div {
 
 #table {
     overflow: auto;
+    display: flex;
 }

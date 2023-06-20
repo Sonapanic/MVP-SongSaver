@@ -9,7 +9,15 @@ async function initialize() { // Populates the list container div with a table, 
     const songs = await fetchSongs(url)
     $('.input').val('')
     $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
-    $('<thead class="thead">Title')
+    const tHead = $('<thead class="thead" id="thead"></th>')
+    $(tHead).appendTo($('#songTable'))
+    const headers = `
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Genre</th>
+    `
+    $(headers).appendTo($('#thead'))
+
     $('<tbody id="tbody"></tbody>').appendTo('#songTable')
     tableData(songs, 'Edit')
     
@@ -26,14 +34,15 @@ async function tableData(obj, btn) { // Creates table data and appends it
         const buttonTd = $(`<td class="btnTd"></td>`)
         $tr.appendTo('#tbody')
        
-        $(`<td>Title: ${title}</td>`).appendTo($tr)
-        $(`<td>Artist: ${artist}</td>`).appendTo($tr)
-        $(`<td>Genre: ${genre}</td>`).appendTo($tr)
+        $(`<td>${title}</td>`).appendTo($tr)
+        $(`<td>${artist}</td>`).appendTo($tr)
+        $(`<td>${genre}</td>`).appendTo($tr)
         const buttons = makeBtns(btn)
         buttons.appendTo($tr)
 
         const editBtn = buttons.find('.editBtn');
         editBtn.on('click', async () => {
+            $('#addForm').hide()
             $('#listContainer').empty()
             await singleSong(url, songId)
         })
@@ -162,6 +171,7 @@ async function prepareEdit(song, id) { // Sets up the listContainer with a form 
         initialize()
     })
     $('#backBtn').on('click', (e) => {
+        e.preventDefault()
         $('#listContainer').empty()
         initialize()
     })

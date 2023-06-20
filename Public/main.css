@@ -21,14 +21,6 @@ div {
     
 }
 
-body::before {
-  left: 0;
-}
-
-body::after {
-  right: 0;
-}
-
 
 /* Header portion */
 
@@ -81,7 +73,7 @@ p {
 }
 
 h1 {
-    font-size: 42px;
+    font-size: 55px;
 }
 
 
@@ -93,6 +85,7 @@ h1 {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .addContainer {
@@ -101,43 +94,55 @@ h1 {
 }
 
 .add {
-    
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
     
 }
 
 .addform {
     display: flex;
-    gap: 100px;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 10px;
 }
 
 .input {
     border: none;
     border-bottom: 1px solid var(--black);
     outline: none;
+    margin-right: 60px;
 }
 
 .songDisplay {
     height: 50rem;
-    width: 80rem;
-    border-radius: 25px;
+    width: 70%;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--black);
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
 }
 
 #listContainer {
     height: 90%;
     width: 90%;
-    border: 1px solid var(--black);
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
     display: flex;
     justify-content: space-evenly;
 }
 
+.thead {
+    font-size: x-large;
+}
+
 
 table td {
-   padding: 20px; 
+    padding: 20px; 
+    /* border: 1px solid var(--black); */
+    text-align: center;
+    font-size: 20px;
+    column-gap: 40px;
 }
 
 td button {
@@ -154,6 +159,11 @@ td button {
     justify-content: space-around;
     overflow: auto;
     display: flex;
+    
+}
+
+thead {
+   
 }
 
 .btnTd {
@@ -164,14 +174,31 @@ td button {
     display: flex;
     height: 100%;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    
+   
+}
+
+#addBtn:hover,
+.input:hover,
+button:hover {
+    transform: scale(1.05); 
+}
+
+#addBtn:hover,
+button:hover {
+    background-color: var(--black);
+    color: var(--light);
+    transition: background-color .4s ease;
+    transition: color .3s ease;
+    transform: scale(1.05); 
+    transition: transform .4s ease;
 }
 
 .input {
    width: auto;
    font-size: 16px;
+   transition: transform 0.3s ease;
 }
 
 #addBtn, 
@@ -180,12 +207,8 @@ button {
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    transition: color 0.4s ease;
+    
 }
 
-#addBtn:hover,
-button:hover {
-    background-color: var(--black);
-    color: var(--light);
-}
+
+

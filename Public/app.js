@@ -18,15 +18,16 @@ async function initialize() {
 
 function tableData(obj) {
     for (let key in obj) {
-        $(`<tr id="tr${obj[key].title}></tr>`).appendTo('#tbody')
+        $(`<tr id="tr${obj[key].title}"></tr>`).appendTo('#tbody')
         let title = obj[key].title
         $(`<td>Title: ${title}</td>`).appendTo(`#tr${title}`)
         let artist = obj[key].artist
-        $(`<td>Title: ${artist}</td>`).appendTo(`#tr${title}`)
+        $(`<td>Artist: ${artist}</td>`).appendTo(`#tr${title}`)
         let genre = obj[key].genre
-        $(`<td>Title: ${genre}</td>`).appendTo(`#tr${title}`)
+        $(`<td>Genre: ${genre}</td>`).appendTo(`#tr${title}`)
     }
 }
+
 
 
 // RESTful route event listeners

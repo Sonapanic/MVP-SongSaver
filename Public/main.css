@@ -108,3 +108,7 @@ div {
     width: 90%;
     border: 1px solid var(--black)
 }
+
+#table {
+    overflow: auto;
+}

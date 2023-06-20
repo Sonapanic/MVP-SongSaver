@@ -1,6 +1,7 @@
 const addBtn = $('#addBtn')
 const url = 'https://songsaver.onrender.com/song_info'
-const localUrl = 'http://postgres:a@HOST:5432/song_saver/song_info'
+// const localUrl = 'http://postgres:a@HOST:5432/song_saver/song_info'
+
 
 function start() {
     initialize()
@@ -10,17 +11,25 @@ start()
 
 async function initialize() {
     const songs = await fetchSongs(url)
-    $('<ul id="ul"></ul>').appendTo('#listContainer')
+    $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
+    $('<tbody id="tbody"></tbody>').appendTo('#songTable')
     for (let key in songs) {
-        let title = songs[key].title
-        let artist = songs[key].artist
-        let genre = songs[key].genre
-        $(`<li>Title: ${title} Artist: ${artist} Genre: ${genre}</li>`).appendTo($('#ul'))
+        tableData()
     }
 }
 
-$(addBtn).on('click', put)
+function tableData() {
+    $(`<tr id="tr${songs[key].title}></tr>`).appendTo('#tbody')
+        let title = songs[key].title
+        $(`<td>Title: ${title}</td>`).appendTo(`#tr${title}`)
+        let artist = songs[key].artist
+        $(`<td>Title: ${artist}</td>`).appendTo(`#tr${title}`)
+        let genre = songs[key].genre
+        $(`<td>Title: ${genre}</td>`).appendTo(`#tr${title}`)
+}
 
+
+// RESTful route event listeners
 function getAll(e) {
     e.preventDefault()
     fetchSongs(url)

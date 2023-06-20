@@ -13,19 +13,19 @@ async function initialize() {
     const songs = await fetchSongs(url)
     $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
     $('<tbody id="tbody"></tbody>').appendTo('#songTable')
-    for (let key in songs) {
-        tableData(songs)
-    }
+    tableData(songs)
 }
 
 function tableData(obj) {
-    $(`<tr id="tr${obj[key].title}></tr>`).appendTo('#tbody')
+    for (let key in obj) {
+        $(`<tr id="tr${obj[key].title}></tr>`).appendTo('#tbody')
         let title = obj[key].title
         $(`<td>Title: ${title}</td>`).appendTo(`#tr${title}`)
         let artist = obj[key].artist
         $(`<td>Title: ${artist}</td>`).appendTo(`#tr${title}`)
         let genre = obj[key].genre
         $(`<td>Title: ${genre}</td>`).appendTo(`#tr${title}`)
+    }
 }
 
 

@@ -85,8 +85,8 @@ async function fetchSongs(url) { // Handles the GET all request to the database
 $('#addBtn').on('click', post) // Event handler for making new songs
 async function post(e) { // Adds a song to the list and repopulates it
     e.preventDefault()
-    $('#listContainer').empty()
     await addSong(url)
+    $('#listContainer').empty()
     initialize('Edit')
 }
 async function addSong(url) { // Handles the actual POST request to the database
@@ -95,7 +95,8 @@ async function addSong(url) { // Handles the actual POST request to the database
         artist: $('#artistInput').val(),
         genre: $('#genreInput').val()
     }
-    try {
+    if (addition.title !== '' && addition.artist !== '' && addition.genre !== '') {
+        try {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -108,9 +109,14 @@ async function addSong(url) { // Handles the actual POST request to the database
             }
             const result = await response.json()
             console.log(result)
-    } catch (err) {
+        } catch (err) {
         console.error(err)
+        }
+    } else {
+        alert('Please fill in all fields.')
     }
+
+    
 }
 
 
@@ -123,21 +129,25 @@ async function modifySong(url, id) { // Handles the PUT request to the database
         artist: $('#editArtist').val(),
         genre: $('#editGenre').val()
     }
-    try {
-        const response = await fetch(`${url}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(modification)
-        })
-        if (!response.ok) {
-            throw new Error('Response not ok')
+    if (modification.title !== '' && addition.artist !== '' && addition.genre !== '') {
+        try {
+            const response = await fetch(`${url}/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(modification)
+            })
+            if (!response.ok) {
+                throw new Error('Response not ok')
+            }
+            const result = await response.json()
+            console.log(result)
+        } catch (err) {
+            console.error(err)
         }
-        const result = await response.json()
-        console.log(result)
-    } catch (err) {
-        console.error(err)
+    } else {
+        alert('Please fill in all fields.')
     }
 }
 async function singleSong(url, id) { // Isolates the selected song for editing

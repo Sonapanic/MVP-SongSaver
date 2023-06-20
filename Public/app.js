@@ -1,22 +1,18 @@
-const url = 'https://songsaver.onrender.com/song_info/'
+const url = 'https://songsaver.onrender.com/song_info'
 start()
 
-// kicks off page loading
-function start() {
+// Get all route and initial page population
+function start() { // Kicks off page loading
     initialize('Edit')
 }
-
-// Populates the list container div with a table, and dynamically generates content based on the database
-async function initialize(btn) {
+async function initialize() { // Populates the list container div with a table, and dynamically generates content based on the database
     const songs = await fetchSongs(url)
     $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
     $('<tbody id="tbody"></tbody>').appendTo('#songTable')
-    tableData(songs, btn)
+    tableData(songs, 'Edit')
     
 }
-
-// Creates table data and appends it 
-function tableData(obj, btn) {
+async function tableData(obj, btn) { // Creates table data and appends it 
     for (let key in obj) {
         const songId = obj[key].id
         const title = obj[key].title
@@ -39,33 +35,26 @@ function tableData(obj, btn) {
             $('#listContainer').empty()
             await singleSong(url, songId)
         })
+        const deleteBtn = buttons.find('.deleteBtn')
+        deleteBtn.on('click', async () => {
+            await removeSong(url, songId)
+            $('#listContainer').empty()
+            initialize()
+        })
     }
 }
-
-function makeBtns(btn1) {
+function makeBtns(btn1) { // Makes the buttons 
     const buttonTd = $('<td class="btnTd"></td>')
     
     if (btn1 === 'Edit') {
          $(`<button class="editBtn btn">Edit</button>`).appendTo(buttonTd)
-         $('<button class="btn">Delete</button>').appendTo(buttonTd)
+         $('<button class="deleteBtn btn">Delete</button>').appendTo(buttonTd)
     } else {
         $('<button class="saveBtn btn">Save</button>').appendTo(buttonTd)
     }
     return buttonTd
 }
-
-// RESTful route event listeners
-$('#addBtn').on('click', post)
-
-
-async function post(e) {
-    e.preventDefault()
-    $('#listContainer').empty()
-    await addSong(url)
-    initialize('Edit')
-}
-
-async function fetchSongs(url) {
+async function fetchSongs(url) { // Handles the GET all request to the database
     try {
         const response = await fetch(url)
         if (!response.ok) {
@@ -78,7 +67,18 @@ async function fetchSongs(url) {
     }
 }
 
-async function addSong(url) {
+
+
+
+// Functions for adding new songs
+$('#addBtn').on('click', post) // Event handler for making new songs
+async function post(e) { // Adds a song to the list and repopulates it
+    e.preventDefault()
+    $('#listContainer').empty()
+    await addSong(url)
+    initialize('Edit')
+}
+async function addSong(url) { // Handles the actual POST request to the database
     const addition = {
         title: $('#titleInput').val(),
         artist: $('#artistInput').val(),
@@ -102,22 +102,46 @@ async function addSong(url) {
     }
 }
 
-async function singleSong(url, id) {
+
+
+
+// Functions for modifying existing songs
+async function modifySong(url, id) { // Handles the PUT request to the database
+    const modification = {
+        title: $('#editTitle').val(),
+        artist: $('#editArtist').val(),
+        genre: $('#editGenre').val()
+    }
     try {
-        const response = await fetch(url + id)
+        const response = await fetch(`${url}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(modification)
+        })
         if (!response.ok) {
             throw new Error('Response not ok')
         }
-        const song = await response.json()
-        console.log(song)
-        prepareEdit(song)
+        const result = await response.json()
+        console.log(result)
     } catch (err) {
         console.error(err)
     }
 }
-
-
-async function prepareEdit(song) {
+async function singleSong(url, id) { // Isolates the selected song for editing
+    try {
+        const response = await fetch(`${url}/${id}`)
+        if (!response.ok) {
+            throw new Error('Response not ok')
+        }
+        const song = await response.json()
+        prepareEdit(song, id)
+    } catch (err) {
+        console.error(err)
+    }
+}
+async function prepareEdit(song, id) { // Sets up the listContainer with a form and a submit button for editing
     const { title, artist, genre } = song[0];
     const newForm = $('<form class="form" id="editForm"></form>');
     const formFields = `
@@ -128,5 +152,30 @@ async function prepareEdit(song) {
     `;
     newForm.appendTo($('#listContainer'));
     newForm.append(formFields);
+    $('#saveBtn').on('click', async (e) => {
+        e.preventDefault()
+        await modifySong(url, id) 
+        $('#listContainer').empty()
+        initialize()
+    })
   }
-  
+
+
+
+async function removeSong(url, id) {
+    try {
+        const response = await fetch(`${url}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        if (!response.ok) {
+            throw new Error('Response not ok')
+        }
+        const result = await response.json()
+        console.log(result)
+    } catch (err) {
+        console.error(err)
+    }
+}

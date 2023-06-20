@@ -14,11 +14,11 @@ async function initialize() {
     $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
     $('<tbody id="tbody"></tbody>').appendTo('#songTable')
     for (let key in songs) {
-        tableData()
+        tableData(songs)
     }
 }
 
-function tableData() {
+function tableData(obj) {
     $(`<tr id="tr${songs[key].title}></tr>`).appendTo('#tbody')
         let title = songs[key].title
         $(`<td>Title: ${title}</td>`).appendTo(`#tr${title}`)

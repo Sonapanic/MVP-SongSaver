@@ -29,8 +29,8 @@ function tableData(obj) {
         $(`<td>Title: ${title}</td>`).appendTo($tr)
         $(`<td>Artist: ${artist}</td>`).appendTo($tr)
         $(`<td>Genre: ${genre}</td>`).appendTo($tr)
-        $('<button class="editBtn btn">Edit</buton>')
-        $('<button class="deleteBtn btn">Delete</button>')
+        $('<button class="editBtn btn">Edit</buton>').appendTo($tr)
+        $('<button class="deleteBtn btn">Delete</button>').appendTo($tr)
     }
 }
       

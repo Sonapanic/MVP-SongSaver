@@ -7,6 +7,7 @@ function start() { // Kicks off page loading
 }
 async function initialize() { // Populates the list container div with a table, and dynamically generates content based on the database
     const songs = await fetchSongs(url)
+    $('.input').val('')
     $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
     $('<tbody id="tbody"></tbody>').appendTo('#songTable')
     tableData(songs, 'Edit')

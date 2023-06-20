@@ -18,12 +18,15 @@ async function initialize() {
 
 function tableData(obj) {
     for (let key in obj) {
-        $(`<tr id="tr${obj[key].title}"></tr>`).appendTo('#tbody')
-        let title = obj[key].title
+        const title = obj[key].title
+        const artist = obj[key].artist
+        const genre = obj[key].genre
+        const trId = `tr${title}`
+        const tr = $(`<tr id="${trId}></tr>`)
+        tr.appendTo('#tbody')
+        
         $(`<td>Title: ${title}</td>`).appendTo(`#tr${title}`)
-        let artist = obj[key].artist
         $(`<td>Artist: ${artist}</td>`).appendTo(`#tr${title}`)
-        let genre = obj[key].genre
         $(`<td>Genre: ${genre}</td>`).appendTo(`#tr${title}`)
     }
 }

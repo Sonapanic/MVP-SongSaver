@@ -2,6 +2,7 @@ import express from 'express'
 import pg from 'pg'
 import postgres from 'postgres'
 import dotenv from 'dotenv'
+import cors from 'cors'
 dotenv.config()
 
 const port = process.env.PORT
@@ -18,6 +19,7 @@ const pool = new Pool ({
 })
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(express.static('Public'))
 

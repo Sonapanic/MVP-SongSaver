@@ -1,6 +1,7 @@
 const addBtn = $('#addBtn')
 const url = 'https://songsaver.onrender.com/song_info'
-// const localUrl = 'http://postgres:a@HOST:5432/song_saver/song_info'
+// const url = 'http://127.0.0.1:5500/song_saver/Public/index.html'
+
 
 
 function start() {
@@ -33,7 +34,6 @@ function tableData(obj) {
         $('<button class="deleteBtn btn">Delete</button>').appendTo($tr)
     }
 }
-      
 
 
 

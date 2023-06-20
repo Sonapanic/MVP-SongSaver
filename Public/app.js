@@ -129,7 +129,7 @@ async function modifySong(url, id) { // Handles the PUT request to the database
         artist: $('#editArtist').val(),
         genre: $('#editGenre').val()
     }
-    if (modification.title !== '' && addition.artist !== '' && addition.genre !== '') {
+    if (modification.title !== '' && modification.artist !== '' && modification.genre !== '') {
         try {
             const response = await fetch(`${url}/${id}`, {
                 method: 'PUT',

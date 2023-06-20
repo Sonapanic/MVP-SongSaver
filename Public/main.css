@@ -95,8 +95,8 @@ div {
 }
 
 .songDisplay {
-    height: 60vh;
-    width: 50rem;
+    height: 50rem;
+    width: 80rem;
     border-radius: 25px;
     justify-content: center;
     align-items: center;

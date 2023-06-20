@@ -1,5 +1,6 @@
 const addBtn = $('#addBtn')
 const url = 'https://songsaver.onrender.com/song_info'
+const localUrl = 'http://postgres:a@HOST:5432/song_saver/song_info'
 
 function start() {
     initialize()

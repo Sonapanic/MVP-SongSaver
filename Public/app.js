@@ -9,6 +9,7 @@ async function initialize() { // Populates the list container div with a table, 
     const songs = await fetchSongs(url)
     $('.input').val('')
     $('<table class="table" id="songTable"> </table>').appendTo('#listContainer')
+    $('<thead class="thead">Title')
     $('<tbody id="tbody"></tbody>').appendTo('#songTable')
     tableData(songs, 'Edit')
     
@@ -150,6 +151,7 @@ async function prepareEdit(song, id) { // Sets up the listContainer with a form 
       <input class="editInput input" type="text" id="editArtist" name="artistEdit" placeholder="${artist}">
       <input class="editInput input" type="text" id="editGenre" name="genreEdit" placeholder="${genre}">
       <button type="submit" value="Save" id="saveBtn">Save</button>
+      <button type="submit" value="Back" id="backBtn">Back</button>
     `;
     newForm.appendTo($('#listContainer'));
     newForm.append(formFields);
@@ -159,11 +161,15 @@ async function prepareEdit(song, id) { // Sets up the listContainer with a form 
         $('#listContainer').empty()
         initialize()
     })
+    $('#backBtn').on('click', (e) => {
+        $('#listContainer').empty()
+        initialize()
+    })
   }
 
 
 
-  
+
 // Function for deleting songs from the list
 async function removeSong(url, id) {
     try {

@@ -163,6 +163,8 @@ async function prepareEdit(song, id) { // Sets up the listContainer with a form 
 
 
 
+  
+// Function for deleting songs from the list
 async function removeSong(url, id) {
     try {
         const response = await fetch(`${url}/${id}`, {

@@ -167,12 +167,14 @@ async function prepareEdit(song, id) { // Sets up the listContainer with a form 
     $('#saveBtn').on('click', async (e) => {
         e.preventDefault()
         await modifySong(url, id) 
+        $('#addForm').show()
         $('#listContainer').empty()
         initialize()
     })
     $('#backBtn').on('click', (e) => {
         e.preventDefault()
         $('#listContainer').empty()
+        $('#addForm').show()
         initialize()
     })
   }

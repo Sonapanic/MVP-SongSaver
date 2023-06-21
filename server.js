@@ -11,11 +11,6 @@ const sql = postgres(process.env.DATABASE_URL)
 
 const pool = new Pool ({
     connectionString: process.env.DATABASE_URL
-    // user: 'postgres', 
-    // password: 'a', 
-    // database: 'song_saver',
-    // host: 'localhost',
-    // port: 5432
 })
 
 const app = express()

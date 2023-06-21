@@ -238,3 +238,7 @@ button {
 .footer {
     width: 50vw;
 }
+
+.hidden {
+    visibility: hidden;
+}

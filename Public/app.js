@@ -42,7 +42,7 @@ async function tableData(obj, btn) { // Creates table data and appends it
 
         const editBtn = buttons.find('.editBtn');
         editBtn.on('click', async () => {
-            $('#addForm').hide()
+            $('#addForm').addClass('hidden')
             $('#listContainer').empty()
             await singleSong(url, songId)
         })
@@ -177,14 +177,14 @@ async function prepareEdit(song, id) { // Sets up the listContainer with a form 
     $('#saveBtn').on('click', async (e) => {
         e.preventDefault()
         await modifySong(url, id) 
-        $('#addForm').show()
+        $('#addForm').removeClass('hidden')
         $('#listContainer').empty()
         initialize()
     })
     $('#backBtn').on('click', (e) => {
         e.preventDefault()
         $('#listContainer').empty()
-        $('#addForm').show()
+        $('#addForm').removeClass('hidden')
         initialize()
     })
   }
